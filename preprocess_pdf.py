@@ -51,7 +51,7 @@ if __name__ == "__main__":
     if not chunk_overlap:
         chunk_overlap = 0
 
-    text_splitter = create_text_splitter(chunk_size, chunk_overlap)
+    text_splitter = create_text_splitter(int(chunk_size), int(chunk_overlap))
     print('Creating sentence chunks ~')
     pages_n_chunks_new = []
     for item in pages_n_texts:
