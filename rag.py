@@ -68,7 +68,7 @@ Answer:"""
 
 def ask(query: str, temperature: float=0.2, max_new_tokens: int=256, format_answer_text: bool=True, return_context: bool=False):
     # -------- RETRIEVAL --------
-    scores, indices = retrieve_relevant_info(query, embs, n_to_retrieve=10)
+    scores, indices = retrieve_relevant_info(query, embs, n_to_retrieve=5)
     context_items = [pages_n_chunks[i] for i in indices]
     for i, item in enumerate(context_items):
         item['score'] = scores[i].cpu()
@@ -92,7 +92,10 @@ def ask(query: str, temperature: float=0.2, max_new_tokens: int=256, format_answ
 
 if __name__ == "__main__":
 
-    print('Enter a query:\n')
-    query = input()
-    print('estimating ~ estimating ~')
-    ask(query, temperature=0.7, return_context=False)
+    while True:
+        print('Enter a query')
+        query = input('(Enter q to quit) ')
+        if query == 'q':
+            break
+        print('estimating ~ estimating ~')
+        ask(query, temperature=0.7, return_context=False)
