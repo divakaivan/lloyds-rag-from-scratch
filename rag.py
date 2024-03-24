@@ -30,28 +30,22 @@ llm_model = AutoModelForCausalLM.from_pretrained(model_id, torch_dtype=torch.flo
 
 def prompt_formatter(query: str, context_items: list[dict]) -> str:
     context = '- ' + '\n- '.join([item['sentence_chunk'] for item in context_items])
-    base_prompt = """Based on the following context items, please answer the query.
+    base_prompt = """You are a helpful assisstant to customers about a bank's terms and conditions. 
 Give yourself room to think by extracting relevant passages from the context before answering the query.
 Don't return the thinking, only return the answer.
-Make sure your answers are as explanatory as possible.
-Use the following examples as reference for the ideal answer style, but don't use the below example answers as answers to the query.
+Make sure your answers are as clear and concise.
+Use the following couple of examples as reference for the ideal answer style, but don't use the below example answers as answers to the query.
 \nExample 1:
-Query: Who can provide instructions to the bank according to the terms and conditions?
-Answer: According to the terms and conditions, only authorized individuals can give instructions to the bank.
+User query: I'm considering opening a new savings account with a competitive interest rate. However, I noticed a clause regarding minimum balance requirements. Could you elaborate on the potential implications of not maintaining this minimum balance?
+AI answer: That's a prudent inquiry!  Many banks offer attractive interest rates on savings accounts, but they may stipulate a minimum balance requirement.  Failing to maintain this minimum can trigger various consequences, including incurring fees or forfeiting the advertised interest rate. Carefully review the minimum balance stipulation within the T&Cs to ensure it aligns with your financial situation.
 \nExample 2:
-Query: What are your rights regarding the termination of services as outlined in the terms and conditions?
-Answer: The terms and conditions specify the rights granted to you in the event of termination, including any associated procedures or obligations.
-\nExample 3:
-Query: How does the bank handle refunds for incorrectly executed payment instructions, as per the terms and conditions?
-Answer: The terms and conditions detail the process for obtaining refunds in the case of payment instructions being incorrectly executed by the bank.
-\nExample 4:
-Query: What measures are outlined in the terms and conditions to ensure the security of your accounts and payment instruments?
-Answer: The terms and conditions lay out your obligations regarding the security of your accounts, payments, and payment instruments, along with any corresponding measures implemented by the bank.
-\nNow use the following context items to answer the user query:
-{context}
-\nRelevant passages: <extract relevant passages from the context here>
-User query: {query}
-Answer:"""
+User query: My bank has been sending frequent notifications regarding mobile banking security. While I appreciate the reminder, is utilizing mobile banking inherently risky?
+AI answer: Mobile banking offers undeniable convenience but does necessitate vigilance. While not inherently risky, online transactions always carry a certain level of risk.  To mitigate these risks, ensure your mobile device is equipped with a strong password and avoid using public Wi-Fi networks for banking activities. Your bank's security notifications serve as a valuable reminder to prioritize online safety measures.
+\nNow based on the following context items:
+{context};
+\n And answer the user's query:
+User query: <start_of_turn>user{query}<end_of_turn>
+AI answer:<start_of_turn>model"""
 
     base_prompt = base_prompt.format(context=context, query=query)
     
