@@ -23,4 +23,8 @@ In preprocess_pdf.py and rag.py I use just local, pip install and run libraries.
 
 https://github.com/divakaivan/lloyds-rag-from-scratch/assets/54508530/a1701a78-c160-43f6-bee0-d748d7954390
 
+### Using out-of-the box embedding and language models
+* embedding model: mixedbread-ai/mxbai-embed-large-v1
+* LLM: google/gemma-2b-it
+
 ### Any feedback is welcome! ^^
