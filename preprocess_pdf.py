@@ -75,7 +75,6 @@ if __name__ == "__main__":
     text_chunk_embs = emb_model.encode(text_chunks, batch_size=16, convert_to_tensor=True)
 
     emb_chunks_df = pd.DataFrame(pages_n_chunks_new)
-    # embs_only_df = pd.DataFrame(text_chunk_embs.to('cpu'))
     emb_chunks_df['embedding'] = text_chunk_embs.cpu().numpy().tolist()
     emb_df_save_path = input('Enter name for embeddings csv. Default is emb_chunks_df (Enter -> skip): ')
     if not emb_df_save_path:
