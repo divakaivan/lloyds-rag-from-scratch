@@ -14,6 +14,13 @@
 └── requirements.txt
 ```
 
+### Setup
+1. `git clone https://github.com/divakaivan/pdf-rag-from-scratch.git`
+2. `pip install -r requirements.txt`
+3. `python preprocess_pdf.py` -> PDF must be saved in the same directory as the file, then it reads and processes the PDF for you, outputs a csv with the embeddings *(Note! use for up to 100k embeddings)*
+4. `python rag.py` -> downloads gemma-2b-it, runs the RAG, and lets you have a chat with your PDF
+5. (Optional) Run the dev versions (`dev_preprocess_pdf.ipynb` and `dev_rag.ipynb`) which uses llama-index as PDF reader and see the difference in the answer quality
+
 ### PDF preprocessing
 In the dev folder, I use the files for development, but also am using llama-index, at the time of writing using it requires an API key, which is free, but we do not know in the future~
 
