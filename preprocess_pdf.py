@@ -14,7 +14,7 @@ def open_and_read_pdf(pdf_path: str) -> list[dict]:
 
     for page_n, page in enumerate(doc):
         text = page.get_text()
-        text = text.replace('\n', ' ').replace('  ', ' ')
+        # text = text.replace('\n', ' ').replace('  ', ' ')
 
         pages_n_texts.append({
             'page_n': page_n,
@@ -59,15 +59,7 @@ if __name__ == "__main__":
         for chunk in item['sentence_chunks']:
             chunk_dict = {}
             chunk_dict['page_n'] = item['page_n']
-            joined_sentence_chunk = ''.join(chunk).replace('  ', ' ').strip()
-            joined_sentence_chunk = re.sub(r'\.([A-Z])', r'. \1', joined_sentence_chunk)
-            joined_sentence_chunk = re.sub(r'\d+(\.\d+)+', '', joined_sentence_chunk)
-            chunk_dict['sentence_chunk'] = joined_sentence_chunk
-
-            # # add metadata
-            chunk_dict['chunk_chars'] = len(joined_sentence_chunk)
-            chunk_dict['chunk_words'] = len([word for word in joined_sentence_chunk.split(' ')])
-            chunk_dict['chunk_tokens'] = len(joined_sentence_chunk) / 4
+            chunk_dict['sentence_chunk'] = chunk
 
             pages_n_chunks_new.append(chunk_dict)
 
