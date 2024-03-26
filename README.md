@@ -3,7 +3,7 @@
 ### Repo structure
 
 ```
-📁lloyds-rag-from-scratch
+📁pdf-rag-from-scratch
 └── 📁dev
     └── dev_preprocess_pdf.ipynb -> preprocess pdf using llama-index
     └── dev_rag.ipynb -> runs rag using llama-index preprocessed pdf
