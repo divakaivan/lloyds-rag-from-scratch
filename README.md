@@ -1,5 +1,7 @@
 # Basic local RAG from scratch
 
+Created throughout [Day 80-83](https://50daysml.blogspot.com/2024/03/day-83-summary-of-my-pdf-rag-from.html) of my self-studying journey.
+
 ### Repo structure
 
 ```
